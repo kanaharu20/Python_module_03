@@ -16,6 +16,7 @@ def main() -> None:
     low_score = 0
     total_players = 0
     total_score = 0
+    score_list = []
     for i in range(0, num_argv - 1):
         try:
             args_int = int(args[i])
@@ -27,5 +28,6 @@ def main() -> None:
                 low_score = args_int
             elif low_score > args_int:
                 low_score = args_int
+            score_list.append()
         except ValueError:
             print(f"Invalid parameter: '{args[i]}'")
