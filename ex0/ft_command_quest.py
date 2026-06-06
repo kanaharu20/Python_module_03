@@ -7,7 +7,7 @@ def main() -> None:
     args = sys.argv
     print("=== Command Quest ===")
     print(f"Program name: {args[0]}")
-    num_argv = len(args)
+    num_argv: int = len(args)
     if(num_argv < 2):
         print(
             "No arguments provided!\n"
