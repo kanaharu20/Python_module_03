@@ -2,7 +2,7 @@
 
 import math
 
-def  get_player_pos():
+def  get_player_pos() -> None:
     print("=== Game Coordinate System ===\n")
     print("Get a first set of coordinates")
     while True:
