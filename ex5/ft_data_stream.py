@@ -1,17 +1,36 @@
 #!/usr/bin/env python3
 
-import typing, random
-
-def gen_event() -> Generator[tuple, None, None]:
-    name_list = ["alice", "bob", "charlie", "dylan"]
-    action_list = ["run", "eat", "sleep", "grab", "move", "swim"]
-
-    yield random.choice(name_list)
-    yield random.choice(action_list)
+import random
+import typing
 
 
+def gen_event() -> tuple:
+    name_list: list = ["alice", "bob", "charlie", "dylan"]
+    action_list: list = ["run", "eat", "sleep", "grab", "move", "swim"]
+    name = random.choice(name_list)
+    action = random.choice(action_list)
+    return name, action
 
-def consume_event():
+
+def consume_event(tuple_list: list) -> typing.Generator[tuple, None, None]:
+    yield tuple_list.pop(random.randint(0, len(tuple_list) - 1))
+
+
+def main() -> None:
+    print("=== Game Data Stream Processor ===")
+    for i in range(0, 1000):
+        event = gen_event()
+        print(f"Event {i}: Player {event[0]} did action {event[1]}")
+
+    tuple_list: list = []
+
+    for i in range(0, 10):
+        tuple_list.append(gen_event())
+    print(f"Built list of 10 events: {tuple_list}")
+    while len(tuple_list):
+        print(f"Got event from list: {next(consume_event(tuple_list))}")
+        print(f"Remains in list: {tuple_list}")
 
 
 if __name__ == "__main__":
+    main()

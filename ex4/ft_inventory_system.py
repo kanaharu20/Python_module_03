@@ -9,7 +9,7 @@ def main() -> None:
 
     inventory: dict = {}
     total_quantity: int = 0
-    most_abundant_num: int = 0 
+    most_abundant_num: int = 0
     least_abundant_num: int = 0
     i: int = 1
     while i <= len(args) - 1:
@@ -48,7 +48,7 @@ def main() -> None:
     print(f"Item least abundant: {least_abundant} with quantity {inventory[least_abundant]}")
     inventory.update({"magic_item": 1})
     print(f"Updated inventory: {inventory}")
-        
+
 
 if __name__ == "__main__":
     main()
