@@ -2,36 +2,41 @@
 
 import sys
 
+
 def main() -> None:
-    args:list = sys.argv
+    args: list[str] = sys.argv
 
     print("=== Inventory System Analysis ===")
 
-    inventory: dict = {}
+    inventory: dict[str, int] = {}
     total_quantity: int = 0
+    most_abundant: str = "None"
     most_abundant_num: int = 0
+    least_abundant: str = "None"
     least_abundant_num: int = 0
     i: int = 1
     while i <= len(args) - 1:
         try:
-            arg: list = args[i].split(":")
+            arg: list[str] = args[i].split(":")
             if len(arg) != 2:
-                raise ValueError(f"Error - invalid parameter '{args[i]}'")
+                raise SyntaxError(f"Error - invalid parameter '{args[i]}'")
             for item in inventory.keys():
                 if arg[0] == item:
-                    raise ValueError(f"Redundant item '{item}' - discarding")
+                    raise SyntaxError(f"Redundant item '{item}' - discarding")
             quantity: int = int(arg[1])
             inventory[arg[0]] = quantity
             total_quantity += quantity
             if most_abundant_num < quantity:
                 most_abundant_num = quantity
-                most_abundant: str = arg[0]
+                most_abundant = arg[0]
             if least_abundant_num == 0 and quantity != 0:
                 least_abundant_num = quantity
-                least_abundant: str = arg[0]
+                least_abundant = arg[0]
             elif least_abundant_num > quantity:
                 least_abundant_num = quantity
                 least_abundant = arg[0]
+        except ValueError as e:
+            print(f"Quantity error for 'key': {e}")
         except Exception as e:
             print(e)
         i += 1
@@ -42,10 +47,14 @@ def main() -> None:
     for item in inventory.keys():
         print(
             f"Item {item} "
-            f"represents {round(inventory[item]/total_quantity*100,1)}%"
-            )
-    print(f"Item most abundant: {most_abundant} with quantity {inventory[most_abundant]}")
-    print(f"Item least abundant: {least_abundant} with quantity {inventory[least_abundant]}")
+            f"represents {round(inventory[item]/total_quantity*100, 1)}%"
+        )
+    print(
+        f"Item most abundant: {most_abundant} "
+        f"with quantity {most_abundant_num}")
+    print(
+        f"Item least abundant: {least_abundant} "
+        f"with quantity {least_abundant_num}")
     inventory.update({"magic_item": 1})
     print(f"Updated inventory: {inventory}")
 

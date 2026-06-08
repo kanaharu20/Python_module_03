@@ -17,21 +17,21 @@ def main() -> None:
     low_score: float = 0
     total_players: float = 0
     total_score: float = 0
-    score_list: list = []
-    for i in range(1, num_argv):
+    score_list: list[int] = []
+    for score in args[1:]:
         try:
-            args_int = int(args[i])
+            score_int = int(score)
             total_players += 1
-            total_score += args_int
-            if high_score < args_int:
-                high_score = args_int
-            if args_int != 0 and low_score == 0:
-                low_score = args_int
-            elif low_score > args_int:
-                low_score = args_int
-            score_list.append(args_int)
+            total_score += score_int
+            if high_score < score_int:
+                high_score = score_int
+            if score_int != 0 and low_score == 0:
+                low_score = score_int
+            elif low_score > score_int:
+                low_score = score_int
+            score_list.append(score_int)
         except ValueError:
-            print(f"Invalid parameter: '{args[i]}'")
+            print(f"Invalid parameter: '{score}'")
     if not num_argv - 1 == len(score_list):
         print(
             "No scores provided. Usage: python3 "

@@ -4,15 +4,17 @@ import random
 import typing
 
 
-def gen_event() -> tuple:
-    name_list: list = ["alice", "bob", "charlie", "dylan"]
-    action_list: list = ["run", "eat", "sleep", "grab", "move", "swim"]
+def gen_event() -> tuple[str, str]:
+    name_list: list[str] = ["alice", "bob", "charlie", "dylan"]
+    action_list: list[str] = ["run", "eat", "sleep", "grab", "move", "swim"]
     name = random.choice(name_list)
     action = random.choice(action_list)
     return name, action
 
 
-def consume_event(tuple_list: list) -> typing.Generator[tuple, None, None]:
+def consume_event(
+        tuple_list: list[tuple[str, str]]
+        ) -> typing.Generator[tuple[str, str], None, None]:
     yield tuple_list.pop(random.randint(0, len(tuple_list) - 1))
 
 
@@ -22,7 +24,7 @@ def main() -> None:
         event = gen_event()
         print(f"Event {i}: Player {event[0]} did action {event[1]}")
 
-    tuple_list: list = []
+    tuple_list: list[tuple[str, str]] = []
 
     for i in range(0, 10):
         tuple_list.append(gen_event())
