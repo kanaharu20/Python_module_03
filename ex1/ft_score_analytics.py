@@ -42,6 +42,8 @@ def main() -> None:
     print(f"Average score: {total_score/total_players}")
     print(f"High score: {high_score}")
     print(f"Low score: {low_score}")
+    if high_score is None or low_score is None:
+        return
     print(f"Score range: {high_score - low_score}\n")
 
 
