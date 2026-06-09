@@ -12,19 +12,19 @@ def gen_player_achievements() -> None:
         'Unstoppable', 'First Steps', 'Collector Supreme',
         'Untouchable', 'Sharp Mind', 'Boss Slayer'}
 
-    num_archievement: int = random.randint(0, 13)
+    num_archievement: int = random.randint(0, len(all_achievements))
     alice_achievements: set[str] = set(random.sample(
         list(all_achievements), num_archievement))
 
-    num_archievement = random.randint(0, 13)
+    num_archievement = random.randint(0, len(all_achievements))
     bob_achievements: set[str] = set(random.sample(
         list(all_achievements), num_archievement))
 
-    num_archievement = random.randint(0, 13)
+    num_archievement = random.randint(0, len(all_achievements))
     charlie_achievements: set[str] = set(random.sample(
         list(all_achievements), num_archievement))
 
-    num_archievement = random.randint(0, 13)
+    num_archievement = random.randint(0, len(all_achievements))
     dylan_achievements: set[str] = set(random.sample(
         list(all_achievements), num_archievement))
 

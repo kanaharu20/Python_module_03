@@ -13,21 +13,19 @@ def main() -> None:
             "ft_score_analytics.py <score1> <score2> ...\n"
         )
         return
-    high_score: float = 0
-    low_score: float = 0
-    total_players: float = 0
-    total_score: float = 0
+    high_score: int | None = None
+    low_score: int | None = None
+    total_players: int = 0
+    total_score: int = 0
     score_list: list[int] = []
     for score in args[1:]:
         try:
             score_int = int(score)
             total_players += 1
             total_score += score_int
-            if high_score < score_int:
+            if high_score is None or high_score < score_int:
                 high_score = score_int
-            if score_int != 0 and low_score == 0:
-                low_score = score_int
-            elif low_score > score_int:
+            if low_score is None or low_score > score_int:
                 low_score = score_int
             score_list.append(score_int)
         except ValueError:

@@ -29,7 +29,7 @@ def get_player_pos() -> None:
     )
     print(f"Distance to center: {round(distance_center, 4)}\n")
 
-    print("Get a second aet of coordinates")
+    print("Get a second set of coordinates")
     while True:
         try:
             raw2: str = input(

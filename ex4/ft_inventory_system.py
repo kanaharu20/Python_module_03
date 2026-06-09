@@ -11,9 +11,9 @@ def main() -> None:
     inventory: dict[str, int] = {}
     total_quantity: int = 0
     most_abundant: str = "None"
-    most_abundant_num: int = 0
+    most_abundant_num: int | None = None
     least_abundant: str = "None"
-    least_abundant_num: int = 0
+    least_abundant_num: int | None = None
     i: int = 1
     while i <= len(args) - 1:
         try:
@@ -26,13 +26,10 @@ def main() -> None:
             quantity: int = int(arg[1])
             inventory[arg[0]] = quantity
             total_quantity += quantity
-            if most_abundant_num < quantity:
+            if most_abundant_num is None or most_abundant_num < quantity:
                 most_abundant_num = quantity
                 most_abundant = arg[0]
-            if least_abundant_num == 0 and quantity != 0:
-                least_abundant_num = quantity
-                least_abundant = arg[0]
-            elif least_abundant_num > quantity:
+            if least_abundant_num is None or least_abundant_num > quantity:
                 least_abundant_num = quantity
                 least_abundant = arg[0]
         except ValueError as e:
@@ -45,10 +42,13 @@ def main() -> None:
     print(f"Item list: {list(inventory.keys())}")
     print(f"Total quantity of the {len(inventory)} items: {total_quantity}")
     for item in inventory.keys():
-        print(
-            f"Item {item} "
-            f"represents {round(inventory[item]/total_quantity*100, 1)}%"
-        )
+        if total_quantity > 0:
+            print(
+                f"Item {item} "
+                f"represents {round(inventory[item]/total_quantity*100, 1)}%"
+            )
+        else:
+            print(f"Item {item} represents 0%")
     print(
         f"Item most abundant: {most_abundant} "
         f"with quantity {most_abundant_num}")
