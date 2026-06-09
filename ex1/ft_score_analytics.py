@@ -30,11 +30,8 @@ def main() -> None:
             score_list.append(score_int)
         except ValueError:
             print(f"Invalid parameter: '{score}'")
-    if not num_argv - 1 == len(score_list):
-        print(
-            "No scores provided. Usage: python3 "
-            "ft_score_analytics.py <score1> <score2> ...\n"
-        )
+    if 0 == len(score_list):
+        print("Usage: python3 ft_score_analytics.py <score1> <score2> ...\n")
         return
     print(f"Scores processed: {score_list}")
     print(f"Total players: {total_players}")

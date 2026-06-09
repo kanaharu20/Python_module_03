@@ -33,11 +33,16 @@ def main() -> None:
                 least_abundant_num = quantity
                 least_abundant = arg[0]
         except ValueError as e:
-            print(f"Quantity error for 'key': {e}")
+            print(f"Quantity error for '{arg[0]}': {e}")
         except Exception as e:
             print(e)
         i += 1
-
+    if len(inventory) == 0:
+        print(
+            "Usage: python3 ft_inventory_system.py "
+            "<item1:quantity1> <item2:quantity2> ...\n"
+            )
+        return
     print(f"Got inventory: {inventory}")
     print(f"Item list: {list(inventory.keys())}")
     print(f"Total quantity of the {len(inventory)} items: {total_quantity}")
