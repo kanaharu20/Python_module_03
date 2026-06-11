@@ -12,7 +12,7 @@ def get_player_pos() -> None:
                 "Enter new coordinates as "
                 "floats in format 'x,y,z': "
             )
-            if not 3 == len(raw1.split(",")):
+            if len(raw1.split(",")) != 3:
                 raise SyntaxError("Invalid syntax")
             x1, y1, z1 = (float(p) for p in raw1.split(","))
             point_player1: tuple[float, float, float] = (x1, y1, z1)
@@ -36,7 +36,7 @@ def get_player_pos() -> None:
                 "Enter new coordinates "
                 "as floats in format 'x,y,z': "
             )
-            if not 3 == len(raw2.split(",")):
+            if len(raw2.split(",")) != 3:
                 raise SyntaxError("Invalid syntax")
             x2, y2, z2 = (float(p) for p in raw2.split(","))
             point_player2: tuple[float, float, float] = (x2, y2, z2)

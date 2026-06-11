@@ -15,7 +15,7 @@ def gen_event() -> typing.Generator[tuple[str, str], None, None]:
 
 def consume_event(
         tuple_list: list[tuple[str, str]]
-        ) -> typing.Generator[tuple[str, str], list[tuple[str, str]], None]:
+        ) -> typing.Generator[tuple[str, str], None, None]:
     while tuple_list:
         index: int = random.randint(0, len(tuple_list) - 1)
         yield tuple_list.pop(index)
@@ -25,14 +25,14 @@ def main() -> None:
     print("=== Game Data Stream Processor ===")
 
     gen = gen_event()
-    for i in range(0, 1000):
+    for i in range(1000):
         event = next(gen)
         print(f"Event {i}: Player {event[0]} did action {event[1]}")
 
     tuple_list: list[tuple[str, str]] = []
 
     gen = gen_event()
-    for i in range(0, 10):
+    for i in range(10):
         tuple_list.append(next(gen))
     print(f"Built list of 10 events: {tuple_list}")
 

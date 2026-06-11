@@ -20,9 +20,8 @@ def main() -> None:
             arg: list[str] = args[i].split(":")
             if len(arg) != 2:
                 raise SyntaxError(f"Error - invalid parameter '{args[i]}'")
-            for item in inventory.keys():
-                if arg[0] == item:
-                    raise SyntaxError(f"Redundant item '{item}' - discarding")
+            if arg[0] in inventory:
+                raise SyntaxError(f"Redundant item '{arg[0]}' - discarding")
             quantity: int = int(arg[1])
             inventory[arg[0]] = quantity
             total_quantity += quantity

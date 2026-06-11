@@ -25,7 +25,7 @@ def main() -> None:
     }
     print(f"Score dict: {score_dict}")
 
-    total_score: float = sum(score_dict.values())
+    total_score: int = sum(score_dict.values())
 
     score_average: float = total_score/len(score_dict)
 
